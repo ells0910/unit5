@@ -29,9 +29,9 @@ void draw() {
 
 void keyPressed() {
   
-  if (key =='w')  y = y - 5;
-  if (key =='s')  y = y + 5;
-  if (key == 'd') x = x + 5;
-  if (key == 'a') x = x - 5;
+  if (key =='w')  y = y - 10;
+  if (key =='s')  y = y + 10;
+  if (key == 'd') x = x + 10;
+  if (key == 'a') x = x - 10;
   
 }
