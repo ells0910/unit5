@@ -17,9 +17,10 @@ boolean wkey, skey, akey, dkey, upkey, downkey, leftkey, rightkey;
 
 void setup() {
   size(600, 600, P2D);
+  background(white);
  // ballx = width/2;
  // bally = 50;
-//  balld = 50;
+ // balld = 50;
   
   //Player1
   p1x = 50;
@@ -60,8 +61,8 @@ void draw() {
  // bally = bally + vy;
   
  // movement player
-  if(wkey) p1y = p1y-5;
-  if(skey) p1y = p1y+5;
+  if(wkey) p1y = p1y+5;
+  if(skey) p1y = p1y-5;
   if(akey) p1x = p1y-5;
   if(dkey) p1x = p1y+5;
   
@@ -93,15 +94,17 @@ void draw() {
 
 
 void keyPressed() {
+  
+  //playerone
   if (key == 'w') wkey = true;
   if (key == 'a') akey = true;
   if (key == 's') skey = true;
   if (key == 'd') dkey = true;
   
-  if (keyCode == UP) upkey = true;
-  if (keyCode == LEFT) leftkey = true;
-  if (keyCode == DOWN) downkey = true;
-  if (keyCode == RIGHT) rightkey = true;
+  if (keyCode == UP)   upkey    = true;
+  if (keyCode == LEFT) leftkey  = true;
+  if (keyCode == DOWN) downkey  = true;
+  if (keyCode == RIGHT)rightkey = true;
   
 } //-------------------------- end of keypressed ----------------------------
 
@@ -111,10 +114,10 @@ void keyReleased() {
   if (key == 's') skey = false;
   if (key == 'd') dkey = false;
   
-  if (keyCode == UP) upkey = false;
-  if (keyCode == LEFT) leftkey = false;
-  if (keyCode == DOWN) downkey = false;
-  if (keyCode == RIGHT) rightkey = false;
+  if (keyCode == UP)   upkey     =   false;
+  if (keyCode == LEFT) leftkey   =   false;
+  if (keyCode == DOWN) downkey   =   false;
+  if (keyCode == RIGHT)rightkey  =   false;
   
   
   
