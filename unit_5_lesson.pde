@@ -1,3 +1,7 @@
+//Unit5 Ellie Gao
+// >___________________<
+
+
 // Colours
 color white   = #ffffff;
 color black   = #000000;
@@ -7,88 +11,82 @@ color red     = #ff0000;
 float p1x, p1y, p1d;
 float p2x, p2y, p2d;
 
-//ball variables
-//float ballx, bally, balld;
-//float vx,vy, ax, ay;
 
 // keyboards variables
 boolean wkey, skey, akey, dkey, upkey, downkey, leftkey, rightkey;
 
+//vall variables
+float ballx, bally, balld;
+float vx, vy;
 
 void setup() {
   size(600, 600, P2D);
   background(white);
- // ballx = width/2;
- // bally = 50;
- // balld = 50;
   
   //Player1
   p1x = 50;
-  p1y = height/2;
-  p2d = 100;
+  p1y = height / 2;
+  p1d = 100;  
   
   //Player2
-  p2x = width-50;
-  p2y = height/2;
-  p2d = 100;
+  p2x = width - 50;
+  p2y = height / 2;
+  p2d = 100;  
   
+  ballx = width/2;
+  bally = height/2;
+  balld = 50;
   
-//  vx = 4;
- // vy = 10;
+  vx = 3;
+  vy = 5;
   
-//  ax = 2;
- // ay = -1;
-  
+
 } //----------------------- end of setup ---------------------------
 
 void draw() {
   background(white);
+  strokeWeight(5);
   
   // player1
-  strokeWeight(5);
-  fill(255,0,0);
+  fill(0);
   circle(p1x, p1y, p1d);
   
 
  //player 2
-  strokeWeight(5);
-  stroke(white);
-  fill(black);
+  fill(255);
   circle(p2x, p2y, p2d);
   
-  //movement 
-  //ballx = ballx + vx;
- // bally = bally + vy;
+ //ball
+  fill(255, 0, 0);
+  circle(ballx, bally, balld);
+
   
  // movement player
-  if(wkey) p1y = p1y+5;
-  if(skey) p1y = p1y-5;
-  if(akey) p1x = p1y-5;
-  if(dkey) p1x = p1y+5;
+  if(wkey) p1y = p1y - 5;
+  if(skey) p1y = p1y + 5;
+  if(akey) p1x = p1x - 5;
+  if(dkey) p1x = p1x + 5;
   
-  if(upkey)   p2y = p2y+5;
-  if(downkey) p2y = p2y-5;
-  if(rightkey)p2x = p2x+5;
-  if(leftkey) p2x = p2x-5;
+  if(upkey)   p2y = p2y - 5;
+  if(downkey) p2y = p2y + 5;
+  if(rightkey)p2x = p2x + 5;
+  if(leftkey) p2x = p2x - 5;
   
-  //bouncing code
-  //if(bally <=0) { //top
- // vy = vy * -0.9;
-//  }
-//  if (bally>= height) { //bottom
-//  vy = vy * -0.9;
-//  bally = height;
- // }
- // if (ballx <= 0) { //right
- // vx = vx * -0.9;
- // ballx = 0;
- // }
- // if (ballx >= width) { //left
- // vx = vx * -0.9;
-//  ballx = width;
-//  }
+  //movement
+  ballx = ballx + vx;
+  bally = bally + vy;
   
+  if(bally <= 0)vy = vy*-1;             // top
+  if(bally >= height) vy = vy * -1;     //bottom
+  if(ballx <=0) vx = vx*-1;             // left
+  if(ballx >= width) vx = vx * -1;      //right
   
+  if(dist(p1x,p1y,ballx,bally) <= p1d/2 + balld/2) {
+    vx = vy = 0;
+  }
+  if(dist(p2x,p2y,ballx,bally) <= p2d/2 + balld/2) {
+    vx = vy = 0;
+  }
   
 } //-------------------------  end of draw  ------------------------
 
@@ -114,11 +112,8 @@ void keyReleased() {
   if (key == 's') skey = false;
   if (key == 'd') dkey = false;
   
-  if (keyCode == UP)   upkey     =   false;
-  if (keyCode == LEFT) leftkey   =   false;
-  if (keyCode == DOWN) downkey   =   false;
-  if (keyCode == RIGHT)rightkey  =   false;
-  
-  
-  
-} //----------------------- end of keyreleased ---------------------
+  if (keyCode == UP)   upkey     = false;
+  if (keyCode == LEFT) leftkey   = false;
+  if (keyCode == DOWN) downkey   = false;
+  if (keyCode == RIGHT)rightkey  = false;
+}
