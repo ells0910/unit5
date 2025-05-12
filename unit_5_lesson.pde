@@ -15,7 +15,7 @@ float p2x, p2y, p2d;
 // keyboards variables
 boolean wkey, skey, akey, dkey, upkey, downkey, leftkey, rightkey;
 
-//vall variables
+//ball variables
 float ballx, bally, balld;
 float vx, vy;
 
@@ -23,12 +23,12 @@ void setup() {
   size(600, 600, P2D);
   background(white);
   
-  //Player1
+// Player1
   p1x = 50;
   p1y = height / 2;
   p1d = 100;  
   
-  //Player2
+// Player2
   p2x = width - 50;
   p2y = height / 2;
   p2d = 100;  
@@ -47,21 +47,21 @@ void draw() {
   background(white);
   strokeWeight(5);
   
-  // player1
+// Player1
   fill(0);
   circle(p1x, p1y, p1d);
   
 
- //player 2
+// Player 2
   fill(255);
   circle(p2x, p2y, p2d);
   
- //ball
+// Ball
   fill(255, 0, 0);
   circle(ballx, bally, balld);
 
   
- // movement player
+// movement player
   if(wkey) p1y = p1y - 5;
   if(skey) p1y = p1y + 5;
   if(akey) p1x = p1x - 5;
@@ -72,21 +72,26 @@ void draw() {
   if(rightkey)p2x = p2x + 5;
   if(leftkey) p2x = p2x - 5;
   
-  //movement
+//movement
   ballx = ballx + vx;
   bally = bally + vy;
   
-  if(bally <= 0)vy = vy*-1;             // top
-  if(bally >= height) vy = vy * -1;     //bottom
-  if(ballx <=0) vx = vx*-1;             // left
-  if(ballx >= width) vx = vx * -1;      //right
+  if(bally <= 0)vy = vy * -1;              // top
+  if(bally >= height) vy = vy * -1;       // bottom
+  if(ballx <=0) vx = vx * -1;            // left
+  if(ballx >= width) vx = vx * -1;      // right
   
-  if(dist(p1x,p1y,ballx,bally) <= p1d/2 + balld/2) {
-    vx = vy = 0;
-  }
-  if(dist(p2x,p2y,ballx,bally) <= p2d/2 + balld/2) {
-    vx = vy = 0;
-  }
+// Ball collision with Player1
+if (dist(p1x, p1y, ballx, bally) <= p1d / 2 + balld / 2) {
+  vx = -vx; 
+  vy = (bally - p1y) * 0.2; 
+}
+
+// Ball collision with Player2
+if (dist(p2x, p2y, ballx, bally) <= p2d / 2 + balld / 2) {
+  vx = -vx;
+  vy = (bally - p2y) * 0.2; 
+}
   
 } //-------------------------  end of draw  ------------------------
 
